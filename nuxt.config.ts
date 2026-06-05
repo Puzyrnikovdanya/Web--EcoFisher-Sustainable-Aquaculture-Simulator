@@ -1,3 +1,6 @@
+const appBaseURL = process.env.NUXT_APP_BASE_URL || '/'
+const assetPath = (path: string) => `${appBaseURL.replace(/\/$/, '')}${path}`
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-08-01',
   devtools: { enabled: true },
@@ -7,13 +10,14 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.css'],
   app: {
+    baseURL: appBaseURL,
     head: {
       htmlAttrs: {
         lang: 'ru'
       },
       title: 'EcoFisher',
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+        { rel: 'icon', type: 'image/svg+xml', href: assetPath('/favicon.svg') }
       ],
       meta: [
         {
