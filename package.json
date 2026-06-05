@@ -1,0 +1,29 @@
+{
+  "name": "ecofisher",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "nuxt": "nuxi",
+    "build": "npm run nuxt -- build",
+    "dev": "TMPDIR=/tmp LAUNCH_EDITOR=code NUXT_TELEMETRY_DISABLED=1 npm run nuxt -- dev --host 127.0.0.1 --no-fork",
+    "generate": "npm run nuxt -- generate",
+    "preview": "npm run nuxt -- preview",
+    "serve:static": "node scripts/serve-static.mjs .output/public 3000",
+    "postinstall": "npm run nuxt -- prepare"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.17.0",
+    "@pinia/nuxt": "^0.5.5",
+    "echarts": "^5.5.1",
+    "nuxt": "^3.13.0",
+    "pinia": "^2.2.2",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^3.2.4",
+    "typescript": "^5.5.4"
+  }
+}
