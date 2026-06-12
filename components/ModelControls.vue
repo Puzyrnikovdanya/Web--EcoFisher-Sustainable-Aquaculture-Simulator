@@ -66,7 +66,7 @@ function formatControl(key: string, digits: number) {
 }
 
 const formattedSpeed = computed(() => `${simulation.params.speed.toFixed(2).replace(/\.?0+$/, '')}x`)
-const initialControlsDisabled = computed(() => simulation.running || simulation.state.time > 0 || simulation.isExtinct)
+const initialControlsDisabled = computed(() => simulation.running || simulation.state.time > 0)
 const isHardMode = computed(() => simulation.params.difficulty === 'hard')
 
 function applyPredatorShock() {

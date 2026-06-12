@@ -164,6 +164,11 @@ export const useSimulationStore = defineStore('simulation', () => {
       params.k
     ],
     () => {
+      if (params.initialAdult < 1) {
+        params.initialAdult = 1
+        return
+      }
+
       if (canSyncInitialState()) {
         syncInitialState()
       }
