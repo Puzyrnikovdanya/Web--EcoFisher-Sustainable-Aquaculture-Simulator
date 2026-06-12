@@ -129,7 +129,7 @@ function applyPredatorShock() {
           <input
             v-model.number="simulation.params.initialAdult"
             type="range"
-            min="0"
+            min="1"
             max="2000"
             step="1"
             :disabled="initialControlsDisabled"

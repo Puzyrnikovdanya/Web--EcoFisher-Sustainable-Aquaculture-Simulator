@@ -34,7 +34,7 @@ function getPopulationStatus(juvenile: number, adult: number, overloaded: boolea
 
 export function createInitialState(params?: ModelParameters): SimulationState {
   const initialJuvenile = params?.initialJuvenile ?? 160
-  const initialAdult = params?.initialAdult ?? 430
+  const initialAdult = Math.max(1, params?.initialAdult ?? 430)
   const initialCapital = params?.initialCapital ?? 1800
   const capacity = params?.k ?? 900
   const boundedFish = enforceFishCapacity(initialJuvenile, initialAdult, capacity)

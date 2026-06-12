@@ -79,7 +79,7 @@ def create_initial_state(params: ModelParameters | None = None) -> SimulationSta
     params = params or ModelParameters()
     juvenile, adult, overloaded = enforce_fish_capacity(
         params.initial_juvenile,
-        params.initial_adult,
+        max(1.0, params.initial_adult),
         params.k,
     )
     predator = 0.0
