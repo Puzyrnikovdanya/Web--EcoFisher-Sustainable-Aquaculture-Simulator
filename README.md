@@ -10,7 +10,7 @@
 
 </div>
 
-![Интерфейс симулятора EcoFisher](docs/images/ecofisher-dashboard.png)
+![Интерфейс симулятора EcoFisher](ecofisher/docs/images/ecofisher-dashboard.png)
 
 ---
 
@@ -320,9 +320,9 @@ $$
 
 ### TypeScript и Python
 
-Рабочая модель интерфейса реализована в [`utils/simulation.ts`](utils/simulation.ts). Именно она выполняется в браузере и обновляет приложение.
+Рабочая модель интерфейса реализована в [`ecofisher/utils/simulation.ts`](ecofisher/utils/simulation.ts). Именно она выполняется в браузере и обновляет приложение.
 
-Файл [`model/ecofisher_model.py`](model/ecofisher_model.py) содержит независимую Python-реализацию той же системы. Он используется как читаемый математический прототип и позволяет проверять поведение модели отдельно от Vue-интерфейса.
+Файл [`ecofisher/model/ecofisher_model.py`](ecofisher/model/ecofisher_model.py) содержит независимую Python-реализацию той же системы. Он используется как читаемый математический прототип и позволяет проверять поведение модели отдельно от Vue-интерфейса.
 
 ## Структура проекта
 
@@ -330,35 +330,32 @@ $$
 EcoFisher/
 ├── .github/workflows/
 │   └── deploy.yml              # публикация на GitHub Pages
-├── assets/css/
-│   └── main.css                # глобальные стили и дизайн-токены
-├── components/
-│   ├── MetricsStrip.vue        # карточки текущих показателей
-│   ├── ModelControls.vue       # параметры и управление симуляцией
-│   ├── SimulationCharts.vue    # графики ECharts
-│   └── TheoryPanel.vue         # теория и математическое описание
-├── docs/images/                # изображения для документации
-├── model/
-│   └── ecofisher_model.py      # Python-версия математической модели
-├── pages/
-│   ├── application.vue         # основная страница приложения
-│   └── index.vue               # перенаправление в симулятор
-├── plugins/
-│   └── vue-devtools.client.ts  # интеграция Vue DevTools
-├── public/
-│   └── favicon.svg
-├── scripts/
-│   └── serve-static.mjs        # локальная раздача static-сборки
-├── stores/
-│   └── simulation.ts           # Pinia Store и цикл симуляции
-├── types/
-│   └── simulation.ts           # типы параметров и состояния
-├── utils/
-│   └── simulation.ts           # вычислительное ядро
-├── app.vue
-├── nuxt.config.ts
-├── package.json
-└── tsconfig.json
+├── ecofisher/                   # исходный код приложения
+│   ├── assets/css/
+│   │   └── main.css            # глобальные стили и дизайн-токены
+│   ├── components/
+│   │   ├── MetricsStrip.vue    # карточки текущих показателей
+│   │   ├── ModelControls.vue   # параметры и управление симуляцией
+│   │   ├── SimulationCharts.vue # графики ECharts
+│   │   └── TheoryPanel.vue     # теория и математическое описание
+│   ├── docs/images/            # изображения для документации
+│   ├── model/
+│   │   └── ecofisher_model.py  # Python-версия математической модели
+│   ├── pages/
+│   │   ├── application.vue     # основная страница приложения
+│   │   └── index.vue           # перенаправление в симулятор
+│   ├── plugins/
+│   │   └── vue-devtools.client.ts
+│   ├── public/favicon.svg
+│   ├── scripts/serve-static.mjs
+│   ├── stores/simulation.ts    # Pinia Store и цикл симуляции
+│   ├── types/simulation.ts     # типы параметров и состояния
+│   ├── utils/simulation.ts     # вычислительное ядро
+│   ├── app.vue
+│   ├── nuxt.config.ts
+│   ├── package.json
+│   └── tsconfig.json
+└── README.md                    # описание проекта
 ```
 
 ## Локальный запуск
@@ -373,7 +370,7 @@ EcoFisher/
 
 ```bash
 git clone https://github.com/Puzyrnikovdanya/Web--EcoFisher-Sustainable-Aquaculture-Simulator.git
-cd Web--EcoFisher-Sustainable-Aquaculture-Simulator
+cd Web--EcoFisher-Sustainable-Aquaculture-Simulator/ecofisher
 npm install
 ```
 
@@ -422,10 +419,10 @@ python3 model/ecofisher_model.py
 
 Публичная версия размещается на GitHub Pages. Workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) автоматически выполняется после каждого push в ветку `main`:
 
-1. устанавливает Node.js из `.nvmrc`;
-2. устанавливает зависимости через `npm ci`;
-3. запускает `npm run generate`;
-4. передает `.output/public` в GitHub Pages;
+1. устанавливает Node.js из `ecofisher/.nvmrc`;
+2. устанавливает зависимости внутри `ecofisher/` через `npm ci`;
+3. запускает `npm run generate` в папке приложения;
+4. передает `ecofisher/.output/public` в GitHub Pages;
 5. публикует новую версию сайта.
 
 Для корректной работы внутри подкаталога репозитория `nuxt.config.ts` получает `NUXT_APP_BASE_URL` во время CI-сборки.
