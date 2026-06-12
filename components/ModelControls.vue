@@ -22,7 +22,6 @@ const predatorAmount = ref(32)
 
 const biologicalControls = computed(() => [
   { key: 'r', label: 'Рост рыбы (r)', min: 0.05, max: 0.9, step: 0.01, digits: 2 },
-  { key: 'k', label: 'Вместимость озера (K)', min: 250, max: 7000, step: 10, digits: 0 },
   { key: 'mu', label: 'Смертность мальков (μ)', min: 0.01, max: 0.2, step: 0.005, digits: 3 },
   { key: 'g', label: 'Взросление (g)', min: 0.02, max: 0.36, step: 0.01, digits: 2 },
   { key: 'delta', label: 'Смертность взрослых (δ)', min: 0.005, max: 0.13, step: 0.005, digits: 3 }
@@ -132,6 +131,21 @@ function applyPredatorShock() {
             min="1"
             max="2000"
             step="1"
+            :disabled="initialControlsDisabled"
+          >
+        </label>
+
+        <label class="slider-card">
+          <span class="field-label">
+            <span>Вместимость озера (K)</span>
+            <span class="value">{{ simulation.params.k.toFixed(0) }}</span>
+          </span>
+          <input
+            v-model.number="simulation.params.k"
+            type="range"
+            min="250"
+            max="7000"
+            step="10"
             :disabled="initialControlsDisabled"
           >
         </label>
